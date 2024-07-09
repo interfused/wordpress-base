@@ -181,3 +181,54 @@ function blankslate_comment_count($count)
         return $count;
     }
 }
+
+/**
+ *  Given a valid file location (it must be an path starting with "/"), i.e. "/css/style.css",
+ *  it returns a string containing the file's mtime as query string, i.e. "/css/style.css?v=0123456789".
+ *  Otherwise, it returns the file location.
+ *
+ *  @param $file  the file to be loaded.
+ */
+function get_server_file_mod_time($file, $path = 'default')
+{
+    if ($path == 'default') {
+        $path = get_stylesheet_directory();
+    }
+    // if it is not a valid path (example: a CDN url)
+    if (strpos($file, '/') !== 0 || !file_exists($path . $file)) return $file;
+
+    // retrieving the file modification time
+    // https://www.php.net/manual/en/function.filemtime.php
+    $mtime = filemtime($path . $file);
+    return $mtime;
+}
+
+function custom_enqueue_scripts()
+{
+
+
+    // custom style
+    wp_register_style('custom', get_stylesheet_directory_uri() . '/css/main.css', false, get_server_file_mod_time('/css/main.css'), null);
+    wp_enqueue_style('custom');
+
+    // * scripts *
+    wp_register_script('bootstrap5', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js', false, '5.0.1', true);
+    wp_enqueue_script('bootstrap5');
+
+    /*
+    https://www.jsdelivr.com/package/npm/js-cookie
+    docs: https://github.com/js-cookie/js-cookie/tree/latest#readme
+  */
+    wp_register_script('jQueryCookie', 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js', false, '1.4.1', true);
+    wp_enqueue_script('jQueryCookie');
+
+
+
+    // custom script
+    add_action('wp_footer', function () {
+        wp_register_script('custom', get_stylesheet_directory_uri() . '/js/custom.js', false, get_server_file_mod_time('/js/custom.js'), true);
+        wp_enqueue_script('custom');
+    });
+}
+
+add_action('wp_enqueue_scripts', 'custom_enqueue_scripts', 100);

@@ -1,0 +1,195 @@
+.bg-base {
+    background-color: $base-color;
+}
+
+nav.bg-base .navbar-nav .nav-link {
+    color: white;
+}
+
+.nav-item .nav-link {
+    color: white;
+}
+
+#top-bar a {
+    font-weight: 700;
+}
+
+.navbar-dark {
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    .nav-link {
+        font-size: 16px;
+    }
+
+    &>.container {
+        background-repeat: no-repeat;
+        background-position: center right;
+        background-size: 32px;
+
+        @media (min-width: map-get($grid-breakpoints, lg)) {
+            background-image: url('../images/icons/translation.png');
+            padding-right: 36px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-expand-md .navbar-nav .nav-link {
+        padding-right: 35px;
+    }
+
+    .navbar-expand-md.subnav .navbar-nav {
+        li+li {
+            margin-left: 35px;
+        }
+
+        .nav-link {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+
+    #language-helper {
+        position: relative;
+        top: -2px;
+    }
+
+    .subnav {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+
+}
+
+#menu-top-bar li.menu-item.menu-item-type-custom.menu-item-object-custom.nav-item.secondary {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar-toggler {
+        padding: 0;
+    }
+
+    li.menu-item.menu-item-type-custom.menu-item-object-custom.nav-item:not( :last-of-type) {
+        border-bottom: 1px solid white;
+    }
+
+    li.menu-item.menu-item-type-custom.menu-item-object-custom.nav-item:last-of-type {
+        margin-bottom: -10px;
+    }
+
+    #menu-top-bar li.menu-item.menu-item-type-custom.menu-item-object-custom.nav-item.secondary {
+        background-color: $secondary-color;
+        display: initial;
+    }
+
+    .navbar-dark .nav-link {
+        font-size: 18px;
+    }
+
+    li.menu-item.menu-item-type-custom.menu-item-object-custom.nav-item.secondary a {
+        font-size: 16px;
+    }
+
+    .language-selections {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navbar-expand-lg .gtranslate_wrapper {
+        display: none;
+    }
+
+    // .navbar.navbar-expand-lg .container:first-of-type>div.gtranslate_wrapper {
+    //     order: 2;
+    // }
+
+    // .navbar.navbar-expand-lg .container:first-of-type>button.navbar-toggler {
+    //     order: 1;
+    // }
+
+    // .navbar.navbar-expand-lg .container:first-of-type>#top-bar {
+    //     order: 3;
+    // }
+}
+
+.cobranding-wrapper {
+    img {
+        max-height: 100px;
+        width: auto;
+    }
+}
+
+// PAGE HEADER ICONS
+.page-template-MEDusage-sharps .hero>.container {
+    background-image: url(/wp-content/themes/medproject2021/images/sharps-usage-white.svg);
+}
+
+.page-template-MEDsafe-disposal-info .hero>.container {
+    background-image: url(/wp-content/themes/medproject2021/images/sharps_safe_disposal_info_white.svg);
+}
+
+.page-template-MEDmailback2 .hero>.container,
+.page-template-MEDmailback3 .hero>.container,
+.page-template-MEDmailback4 .hero>.container {
+    background-image: url(/wp-content/themes/medproject2021/images/mailback-pin.svg);
+}
+
+.page-template-MEDevents .hero>.container {
+    background-image: url(/wp-content/themes/medproject2021/images/takeback-events-white.svg);
+}
+
+.page-template-MEDdisposal .hero>.container {
+    background-image: url(/wp-content/themes/medproject2021/images/in_home_disposal_white.svg);
+}
+
+.page-template-MEDinfo .hero>.container,
+.page-template-MED-hhw-localagency .hero>.container {
+    background-image: url(/wp-content/themes/medproject2021/images/learn.svg);
+}
+
+//RTL LANGUAGE ADJUSTMENTS
+html[dir='rtl'] {
+    nav+.hero>.container h1 {
+        margin-right: 90px;
+
+        @media (min-width: map-get($grid-breakpoints, lg)) {
+            margin-right: 180px;
+        }
+    }
+
+    .navbar-dark {
+        &>.container {
+            background-position: center left;
+
+            @media (min-width: map-get($grid-breakpoints, lg)) {
+                padding-left: 36px;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) and (min-width: 769px) {
+    .d-lg-none.language-selections {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 770px) {
+    .navbar.navbar-expand-lg .container:first-of-type>div.gtranslate_wrapper {
+        order: 2;
+    }
+
+    .navbar.navbar-expand-lg .container:first-of-type>button.navbar-toggler {
+        order: 1;
+    }
+
+    .navbar.navbar-expand-lg .container:first-of-type>#top-bar {
+        order: 3;
+    }
+}

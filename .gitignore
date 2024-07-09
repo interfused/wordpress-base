@@ -157,7 +157,7 @@ node_modules/
 .DS_Store
 
 #Composer specific
-!/assets/themes/base/vendor/
+/assets/themes/base/vendor/
 
 #Codeception failed tests
 /assets/themes/base/tests/_output

@@ -1,0 +1,26 @@
+footer {
+    .container{
+        max-width: 800px;
+    }
+
+    .footer-social-icons{
+        a{
+            position: relative;
+
+            span {
+                display: none;
+                background-color: #fff;
+                position: absolute;
+                top: 60px;
+                left: 50%;
+                z-index: 10;
+                width: 200px;
+                transform: translateX(-50%);
+            }
+
+            &:hover span{
+                display: block;
+            }
+        }
+    }
+}

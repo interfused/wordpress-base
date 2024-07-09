@@ -1,0 +1,57 @@
+$base-color: #3776c8;
+$secondary-color: #00a2ad;
+$button-color: #e4742d;
+$hover-color: #e4742d;
+$tab-bg-color: $base-color;
+$border-color: #42454a;
+$form-border-color: #999999;
+$dark-gray: #666666;
+$darkest-gray: #333333;
+$light-gray: #f3f3f3;
+$nav-inactive: #6295d8;
+$error-color: #ef5353;
+
+.base-color {
+    color: $base-color;
+}
+
+.secondary-color {
+    color: $secondary-color;
+}
+
+.btn.btn-dark {
+    background-color: $button-color;
+    border-color: $button-color;
+}
+.btn-link.btn-outline-dark {
+    color: black;
+    text-decoration: none;
+}
+.btn-link.btn-outline-dark:hover {
+    background: transparent;
+    transition: background 0.5s ease;
+}
+$nav-pills-link-active-bg: $secondary-color;
+$nav-tabs-link-active-bg: $secondary-color;
+$nav-tabs-link-active-color: white;
+
+.swatch2 {
+    background-color: $light-gray;
+
+    .secondary-color {
+        color: #0098a3;
+    }
+}
+
+/** BROWSER UPDATE (conditionally shows depending on browser version) **/
+#buorgig,
+#buorgul,
+#buorgpermanent {
+    background-color: #000 !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    font-size: 18px !important;
+}
+#buorgig {
+    background-color: #333 !important;
+}
