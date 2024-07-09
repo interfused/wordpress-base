@@ -1,0 +1,30 @@
+name: Main branch actions
+on:
+  pull_request:
+    branches:
+      - main
+    types: closed
+jobs:
+  sync-environments:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Merge main -> development
+        uses: devmasx/merge-branch@main
+        with:
+          type: now
+          from_branch: main
+          target_branch: deploy-dev
+          message: Merge main into dev
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge main -> staging
+        uses: devmasx/merge-branch@main
+        with:
+          type: now
+          from_branch: main
+          target_branch: deploy-staging
+          message: Merge main into staging
+          github_token: ${{ secrets.GITHUB_TOKEN }}
