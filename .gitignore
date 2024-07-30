@@ -16,15 +16,15 @@ adminer-*.php
 license-*.txt
 robots.txt
 readme.*.html
-assets/plugins/e-signature/assets/temps/*
+assets/plugins/e-signature/wp-content/temps/*
 #assets/plugins/wordpress-importer/
 assets/themes/base/__sql/
 assets/themes/base/excel/
 assets/themes/base/__sql/
 assets/themes/base/excel/
 assets/themes/base/sass/error_log.log
-/assets/themes/base/tests/acceptance/_env.php
-/assets/pdfs/
+/wp-content/themes/base/tests/acceptance/_env.php
+/wp-content/pdfs/
 
 ftpdir/
 tmp/
@@ -91,18 +91,19 @@ assets/mysql.sql
 /xmlrpc.php
 /wp-admin
 /wp-includes
-/assets/index.php
-/assets/themes/twentyten
-/assets/themes/twentyeleven
-/assets/themes/twentytwelve
-/assets/themes/twentythirteen
-/assets/themes/twentyfourteen
-/assets/themes/twentyfifteen
-/assets/themes/twentysixteen
-/assets/themes/twentyseventeen
-/assets/themes/index.php
-/assets/plugins/index.php
-/assets/plugins/akismet*
+/wp-content/index.php
+/wp-content/themes/twentyten
+/wp-content/themes/twentyeleven
+/wp-content/themes/twentytwelve
+/wp-content/themes/twentythirteen
+/wp-content/themes/twentyfourteen
+/wp-content/themes/twentyfifteen
+/wp-content/themes/twentysixteen
+/wp-content/themes/twentyseventeen
+/wp-content/themes/twentytwenty*
+/wp-content/themes/index.php
+/wp-content/plugins/index.php
+/wp-content/plugins/akismet*
 
 # large/disallowed file types
 # a CDN should be used for these
@@ -158,12 +159,12 @@ node_modules/
 .DS_Store
 
 #Composer specific
-/assets/themes/base/vendor/
+/wp-content/themes/base/vendor/
 
 #Codeception failed tests
-/assets/themes/base/tests/_output
-/assets/themes/base/tests/_support/_generated/AcceptanceTesterActions.php
+/wp-content/themes/base/tests/_output
+/wp-content/themes/base/tests/_support/_generated/AcceptanceTesterActions.php
 
-/assets/debug.log
+/wp-content/debug.log
 local-phpinfo.php
 local-xdebuginfo.php
