@@ -1,12 +1,14 @@
 # wordpress-base
 
-Basic start for wordpress development with alternate wp-content directory renamed
+Basic opinionated starter for WordPress local development with Docker. 
 
-We are using Wordpress as the CMS of choice.
-Included in the repository are only the files and do not include the database tables
+We are only including using Wordpress as the CMS of choice and are Included in the repository are only the files and do not include the database tables
 
 - Theme files
-- Appropriate plugins
+- Suggested plugins
+
+# Prerequisites
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) 
 
 # Visual Studio Code Tools
 

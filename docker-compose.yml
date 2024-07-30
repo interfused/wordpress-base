@@ -1,0 +1,62 @@
+services:
+
+  wp-database:
+    image: mariadb:10.6.4-focal
+    container_name: '${CONTAINER_BASENAME}-db'
+    restart: unless-stopped
+    ports: 
+      - 3306:3306
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - wordpress-network
+
+  phpmyadmin:
+    depends_on:
+      - wp-database
+    image: phpmyadmin/phpmyadmin
+    container_name: '${CONTAINER_BASENAME}-phpmyadmin'
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    env_file: .env
+    environment:
+      PMA_HOST: wp-database
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+    networks:
+      - wordpress-network
+
+  wordpress:
+    depends_on:
+      - wp-database
+    #Dockerfile here
+    build: ./
+    container_name: '${CONTAINER_BASENAME}-wordpress'
+    restart: unless-stopped
+    ports:
+    - 8080:80
+    env_file: .env
+    environment:
+      WORDPRESS_DB_HOST: wp-database:3306
+      WORDPRESS_DB_NAME: '${MYSQL_DATABASE}' 
+      WORDPRESS_DB_USER: '${MYSQL_USER}'
+      WORDPRESS_DB_PASSWORD: '${MYSQL_PASSWORD}'
+    volumes:
+      - wp-data:/var/www/html
+      - ./wp-content/:/var/www/html/wp-content/:rw
+    networks:
+      - wordpress-network
+
+volumes:
+  db-data:
+  wp-data:
+
+networks:
+  wordpress-network:
+    driver: bridge

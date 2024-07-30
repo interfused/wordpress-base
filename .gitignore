@@ -9,6 +9,7 @@ Thumbs.db
 */temps/*
 .wpe-devkit/*
 .wpengine-conf/*
+.env
 
 #misc files
 adminer-*.php
