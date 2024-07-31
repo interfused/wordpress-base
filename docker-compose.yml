@@ -4,8 +4,9 @@ services:
     image: mariadb:10.6.4-focal
     container_name: '${CONTAINER_BASENAME}-db'
     restart: unless-stopped
+    #typically 3306:3306 but running different port just in case of local port conflict issues
     ports: 
-      - 3306:3306
+      - 3307:3306
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
