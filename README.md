@@ -31,39 +31,19 @@ After installing Visual studio code, visit VSC Marketplace and installing the fo
 
 # Additional Development Tools
 
-Install [Composer](https://getcomposer.org/download/) to your computer globally. After installing composer globally, navigate to the theme folder 'base' and run "composer install". Doing so will install [Codeception](https://codeception.com/) as a development dependency. NOTE: if there are any issues with dependency installation, it may be advisable to delete the "vendor" directory within the 'base' theme folder and run "composer install" again from within the theme directory.
+## Selenium Docker
+https://hub.docker.com/r/selenium/standalone-chrome
+See the section "(Optional) To see what is happening inside the container, head to... " to visually see what is going on.
 
-Install Selenium globally as well on your computer as noted in the [Selenium Server info section](https://codeception.com/docs/03-AcceptanceTests). This will be required for running acceptance tests through Codeception. NOTE: You may have to install [NodeJS](https://nodejs.org/) and [Java](https://www.java.com/) on your computer as well depending on your development machine configuration.
 
-On Mac, might need to install [Homebrew](https://brew.sh/) and update to php v7.4 per the following [documentation](https://discussions.apple.com/thread/253380264) because of a dependancy "ext-zip" which is required but may not have been included with your PHP version.
-
-## Selenium issues
-
-might have to run the following if there are issues running tests for selenium-standalone-start
-selenium-standalone start --chromeDriver="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --host 0.0.0.0 --drivers.chrome.args=--remote-debugging-address=0.0.0.0 --drivers.chrome.args=--remote-debugging-port=9222
-
-## Chromium notes
-
-If you receive error notes regarding ChromeDriver and versions and/or have updated your version of Chrome, you may have to update your global version of selenium-standalone.
-
-- sudo npm update -g selenium-standalone
-- sudo selenium-standalone install
 
 ## Upgrading CSS File Generation Process
 
-We've transitioned away from using the wp-scss plugin for generating CSS files from SCSS files. Instead, we've adopted the node-sass NPM package, which should be installed in the theme root directory (assets\themes\'base').
+We've transitioned away from using the wp-scss plugin for generating CSS files from SCSS files. Instead, we've adopted the node-sass NPM package, which should be installed in the theme root directory (wp-content\themes\'base').
 
 ### Installation Instructions
 
-1. **Install node-sass:**
-
-   - Ensure you have node-sass installed in the theme root directory.
-   - Navigate to the theme root directory and run the following command, the `package.json` file is already placed to the same location.:
-     ```
-     npm install
-     ```
-
-2. **Generate CSS Files:**
+**Generate CSS Files:**
    - Once all packages are installed, execute the following command to compile SCSS files into CSS:
      ```
      npm run css
