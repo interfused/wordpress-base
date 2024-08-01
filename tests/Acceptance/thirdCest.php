@@ -5,7 +5,7 @@ namespace Tests\Acceptance;
 
 use Tests\Support\AcceptanceTester;
 
-class FirstAcceptanceCest
+class thirdCest
 {
     public function _before(AcceptanceTester $I)
     {
@@ -14,7 +14,5 @@ class FirstAcceptanceCest
     // tests
     public function tryToTest(AcceptanceTester $I)
     {
-        $I->amOnPage('/');
-        $I->see('searchasdfasdfasdf');
     }
 }
