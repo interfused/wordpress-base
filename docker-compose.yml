@@ -1,12 +1,12 @@
 services:
 
-  wp-database:
+  wp-database:  
     image: mariadb:10.6.4-focal
     container_name: '${CONTAINER_BASENAME}-db'
     restart: unless-stopped
     #typically 3306:3306 but running different port just in case of local port conflict issues
-    ports: 
-      - 3307:3306
+    #ports: 
+    #  - 3307:3306
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
@@ -51,6 +51,8 @@ services:
     volumes:
       - wp-data:/var/www/html
       - ./wp-content/:/var/www/html/wp-content/:rw
+      - /var/www/html/wp-content/themes/base/vendor
+      - /var/www/html/wp-content/themes/base/node_modules
     networks:
       - wordpress-network
 

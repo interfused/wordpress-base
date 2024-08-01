@@ -10,10 +10,10 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 # Update and install basic utilities first
 RUN apt-get update && apt-get install -y curl git build-essential
 
-# Install Java (OpenJDK 11) and verify installation
-#RUN apt-get update && \
-#    apt-get install -y openjdk-11-jre && \
-#    java -version
+# Install Java (OpenJDK 17) and verify installation
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jre && \
+    java -version
 
 # Install Node.js and npm
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
@@ -43,10 +43,10 @@ RUN npm install || { echo 'npm install failed'; exit 1; }
 
 # Verify npm packages and configuration
 #RUN npm list -g --depth=0 || echo 'Failed to list global npm packages'
-#RUN npm i -g selenium-standalone@10.0.0 || echo 'Could not install selenium standalone package'
+RUN npm i -g selenium-standalone@10.0.0 || { echo 'Selenium Standalone npm package installation failed'; exit 1; }
 
 # Install Selenium Standalone with verbose logging
-#RUN selenium-standalone install --verbose || { echo 'Selenium Standalone installation failed'; exit 1; }
+RUN selenium-standalone install --verbose || { echo 'Selenium Standalone installation failed'; exit 1; }
 
 # Set the working directory back to the root of the WordPress installation
 WORKDIR /var/www/html
