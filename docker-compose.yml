@@ -1,18 +1,15 @@
-services:
+version: '3.7'
 
+services:
   wp-database:  
     image: mariadb:10.6.4-focal
-    container_name: '${CONTAINER_BASENAME}-db'
+    container_name: wp-database
     restart: unless-stopped
-    #typically 3306:3306 but running different port just in case of local port conflict issues
-    #ports: 
-    #  - 3307:3306
-    env_file: .env
     environment:
-      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
-      MYSQL_DATABASE: '${MYSQL_DATABASE}'
-      MYSQL_USER: '${MYSQL_USER}'
-      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: my_root_password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress_user
+      MYSQL_PASSWORD: wordpress_password
     volumes:
       - db-data:/var/lib/mysql
     networks:
@@ -22,42 +19,60 @@ services:
     depends_on:
       - wp-database
     image: phpmyadmin/phpmyadmin
-    container_name: '${CONTAINER_BASENAME}-phpmyadmin'
+    container_name: phpmyadmin
     restart: unless-stopped
     ports:
       - 8081:80
-    env_file: .env
     environment:
       PMA_HOST: wp-database
-      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: my_root_password
     networks:
       - wordpress-network
 
   wordpress:
     depends_on:
       - wp-database
-    #Dockerfile here
-    build: ./
-    container_name: '${CONTAINER_BASENAME}-wordpress'
+    image: wordpress:latest
+    container_name: wordpress
     restart: unless-stopped
     ports:
-    - 8080:80
-    env_file: .env
+      - 8080:80
     environment:
       WORDPRESS_DB_HOST: wp-database:3306
-      WORDPRESS_DB_NAME: '${MYSQL_DATABASE}' 
-      WORDPRESS_DB_USER: '${MYSQL_USER}'
-      WORDPRESS_DB_PASSWORD: '${MYSQL_PASSWORD}'
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress_user
+      WORDPRESS_DB_PASSWORD: wordpress_password
     volumes:
       - wp-data:/var/www/html
-      - ./wp-content/:/var/www/html/wp-content/:rw
-      - /var/www/html/wp-content/themes/base/vendor
-      - /var/www/html/wp-content/themes/base/node_modules
+      - ./wp-content:/var/www/html/wp-content
+    networks:
+      - wordpress-network
+
+  codecept:
+    depends_on:
+      - wordpress
+      - chrome
+    image: codeception/codeception:5.1.2
+    container_name: codeception
+    volumes:
+      - test-data:/project
+      - ./tests:/project/:rw
+    networks:
+      - wordpress-network
+
+  chrome:
+    image: selenium/standalone-chrome:127.0-chromedriver-127.0
+    container_name: selenium-chrome
+    ports:
+      - "7900:7900"
+      - "4444:4444"
+    shm_size: 2g
     networks:
       - wordpress-network
 
 volumes:
   db-data:
+  test-data:
   wp-data:
 
 networks:

@@ -8,7 +8,7 @@ FROM wordpress:6.2.2-php8.2-apache
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Update and install basic utilities first
-RUN apt-get update && apt-get install -y curl build-essential
+RUN apt-get update && apt-get install -y curl git build-essential
 
 # Install Java (OpenJDK 17) and verify installation
 #RUN apt-get update && \
