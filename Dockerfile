@@ -10,11 +10,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 # Update and install basic utilities first
 RUN apt-get update && apt-get install -y curl build-essential
 
-# Install Java (OpenJDK 17) and verify installation
-#RUN apt-get update && \
-#    apt-get install -y openjdk-17-jre && \
-#    java -version
-
 # Install Node.js and npm
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
@@ -34,19 +29,10 @@ COPY ./wp-content/themes/base/composer.lock ./composer.lock
 COPY ./wp-content/themes/base/package.json ./package.json
 COPY ./wp-content/themes/base/package-lock.json ./package-lock.json
 
-# Debugging step: List directory contents and check permissions
-#RUN ls -al /var/www/html/wp-content/themes/base
-
-# Run Composer install and npm install separately for better debugging
-#RUN composer install || { echo 'Composer install failed'; exit 1; }
-RUN npm install || { echo 'npm install failed'; exit 1; }
+RUN npm install || { echo 'npm packages install failed'; exit 1; }
 
 # Verify npm packages and configuration
 #RUN npm list -g --depth=0 || echo 'Failed to list global npm packages'
-#RUN npm i -g selenium-standalone@10.0.0 || { echo 'Selenium Standalone npm package installation failed'; exit 1; }
-
-# Install Selenium Standalone with verbose logging
-#RUN selenium-standalone install --verbose || { echo 'Selenium Standalone installation failed'; exit 1; }
 
 # Set the working directory back to the root of the WordPress installation
 WORKDIR /var/www/html

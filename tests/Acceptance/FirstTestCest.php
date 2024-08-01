@@ -1,7 +1,9 @@
 <?php
 
 /**
- * DOCS: https://codeception.com/docs/AcceptanceTests
+ * DOCS: 
+ * https://codeception.com/docs/AcceptanceTests
+ * https://codeception.com/docs/modules/WebDriver
  * 
  * Run test from command line
  * docker compose run --rm codecept run {TEST_SUITE} {TEST_CLASS}:{TEST_METHOD}
@@ -22,10 +24,15 @@ class FirstTestCest
     }
 
     // tests
-    public function tryToTest(AcceptanceTester $I)
+    public function homepageTest(AcceptanceTester $I)
     {
-        //$I->amOnPage('/');
-        $I->amOnPage('https://www.stackoverflow.com');
+        $I->amOnPage('/');
+        $I->wait($this->standard_wait_secs);
+        $I->see('WordPress');
+    }
+    public function googleTest(AcceptanceTester $I)
+    {
+        $I->amOnUrl('https://www.google.com');
         $I->wait($this->standard_wait_secs);
         $I->see('search');
     }
