@@ -36,4 +36,14 @@ class FirstTestCest
         $I->wait($this->standard_wait_secs);
         $I->see('search');
     }
+    /*
+    public function googleTest2(AcceptanceTester $I)
+    {
+        //if acceptance url set to google
+        //$I->amOnUrl('https://www.google.com');
+        $I->amOnPage('/');
+        $I->wait($this->standard_wait_secs);
+        $I->see('search');
+    }
+    */
 }
