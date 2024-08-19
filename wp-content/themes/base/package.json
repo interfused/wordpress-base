@@ -5,12 +5,14 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "css": "node-sass --output-style compressed -r -w sass -o css",
-        "css:watch": "npm run css && node-sass --output-style compressed -r -w sass -o css"
+        "cssOLD": "node-sass --output-style compressed -r -w sass -o css",
+        "css:watchOLD": "npm run css && node-sass --output-style compressed -r -w sass -o css",
+        "css": "sass --watch sass:css --style=compressed",
+        "css:watch": "npm run css && sass --watch sass:css --style=compressed"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "node-sass": "^9.0.0"
+        "sass": "^1.77.8"
     }
 }
