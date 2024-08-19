@@ -168,3 +168,6 @@ node_modules/
 /wp-content/debug.log
 local-phpinfo.php
 local-xdebuginfo.php
+
+#codeception envioronment
+codecept_params.php

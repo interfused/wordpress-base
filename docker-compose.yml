@@ -16,7 +16,9 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - wordpress-network
+      wordpress-network:
+        ipv4_address: '${DATABASE_IP}'
+          
 
   phpmyadmin:
     depends_on:
@@ -31,7 +33,8 @@ services:
       PMA_HOST: wp-database
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
     networks:
-      - wordpress-network
+      wordpress-network:
+        ipv4_address: '${PMA_IP}'
 
   wordpress:
     depends_on:
@@ -53,7 +56,9 @@ services:
       - /var/www/html/wp-content/themes/base/vendor
       - /var/www/html/wp-content/themes/base/node_modules
     networks:
-      - wordpress-network
+      wordpress-network:
+        ipv4_address: '${WP_IP}'
+
 
   codecept:
     depends_on:
@@ -65,7 +70,10 @@ services:
       - test-data:/project
       - .:/project/:rw
     networks:
-      - wordpress-network
+      wordpress-network:
+        ipv4_address: 172.28.0.5
+    
+    
 
   chrome:
     image: selenium/standalone-chrome:127.0-chromedriver-127.0
@@ -74,9 +82,11 @@ services:
     ports:
       - "7900:7900"
       - "4444:4444"
+    env_file: .env
     shm_size: 2g
     networks:
-      - wordpress-network
+      wordpress-network:
+        ipv4_address: '${CHROME_IP}'
 
 volumes:
   db-data:
@@ -86,3 +96,6 @@ volumes:
 networks:
   wordpress-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: '${NETWORK_SUBNET}'

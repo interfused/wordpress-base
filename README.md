@@ -25,13 +25,27 @@ We are using [Visual Studio Code](https://code.visualstudio.com/) along with the
 https://hub.docker.com/r/selenium/standalone-chrome
 See the section "(Optional) To see what is happening inside the container, head to... " to visually see what is going on.
 
-## CSS/SCSS changes
+## Setting the Network Gateway IP
+To configure the network gateway IP in the Acceptance.suite.yml file, follow these steps:
 
-We've adopted the sass NPM package, which should be installed in the theme root directory (wp-content\themes\'base').
+##### 1. Execute the Shell Script
+After running `docker compose up -d`, you need to execute the `set_network_gateway_ip.sh` shell script. This script will set the required network gateway IP.
+
+##### 2. Make the Script Executable
+Before running the script, ensure it has executable permissions. Use the following command to do this:
+```
+chmod +x set_network_gateway_ip.sh
+```
+##### 3. Run the Test Case
+Once the script is executable and the gateway IP is set, you can run your test cases with the following command:
+```
+docker compose run --rm codecept run Acceptance FirstTestCest:homepageTest
+```
+## Upgrading CSS File Generation Process
+
+We've transitioned away from using the wp-scss plugin for generating CSS files from SCSS files. Instead, we've adopted the node-sass NPM package, which should be installed in the theme root directory (wp-content\themes\'base').
 
 ### Installation Instructions
-
-Docker compose should take care of the installation
 
 **Generate CSS Files:**
 
