@@ -48,6 +48,6 @@ To observe live updates of your changes:
 npm run css:watch
 ```
 
-This command will monitor the "sass" folder and automatically generate the corresponding CSS files in the "css" folder whenever changes are made to the SCSS files.
+This command will monitor the "sass" folder and automatically generate the corresponding CSS files in the "css" folder whenever changes are made to the SCSS files..
 
 **This step is highly recommended for local development purposes.**
